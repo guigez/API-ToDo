@@ -24,6 +24,17 @@ class UserController {
       response.status(500).json({ error: err.message, message: "User not added" });
     }
   }
+
+  /* Metodo responsavel por buscar um usuario com email */
+  async findUserByEmail(email: string){
+
+  }
+
+  /* Metodo responsavel por buscar um usuario com id */
+  async findUserById(id: string){
+
+  }
+  
 }
 
 export { UserController };
