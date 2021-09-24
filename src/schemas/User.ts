@@ -16,6 +16,11 @@ const UserSchema = new mongoose.Schema({
     require: true,
     select: false,
   },
+  boards: [{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Board',
+    require: false,
+  }],
 })
 
 const User = mongoose.model('User', UserSchema);

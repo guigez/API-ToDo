@@ -34,6 +34,20 @@ class UserController {
   async findUserById(id: string){
 
   }
+
+  async listUsers(resquest: Request, response: Response){
+    try {
+      const users = await User.find().populate('boards');
+      return response.send({ users });
+    }catch (err) {
+      response.status(400).json({ error: err.message, message: "Nothing Found"});
+    }
+  }
+
+  async updateUserBoards(userId: string, boardId: string){
+    const user = await User.findByIdAndUpdate(userId, {$push: {boards: boardId}}, {new:true});
+    return user;
+  }
   
 }
 
