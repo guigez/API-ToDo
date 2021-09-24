@@ -12,7 +12,7 @@ const taskController = new TaskController();
 *   GET     => Buscar uma informacao
 *   POST    => Inserir (criar) uma informacao
 *   PUT     => Alterar uma informacao
-*   DELETE  => Remover um dado
+*   DELETE  => Remover um dado 
 *   PATCH   => Alterar uma informacao especifica
 */
 
