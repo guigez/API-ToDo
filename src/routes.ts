@@ -1,9 +1,17 @@
 import { Router } from "express";
-import { CreateUserController } from "./controllers/CreateUserController";
+import { UserController } from "./controllers/UserController";
 
 const router = Router();
-const createUserController = new CreateUserController();
+const userController = new UserController();
 
-router.post('/users', createUserController.handle);
+/*
+*   GET     => Buscar uma informacao
+*   POST    => Inserir (criar) uma informacao
+*   PUT     => Alterar uma informacao
+*   DELETE  => Remover um dado
+*   PATCH   => Alterar uma informacao especifica
+*/
+
+router.post('/users', userController.store);
 
 export { router }
