@@ -23,7 +23,10 @@ router.post('/boards', boardController.store);
 
 router.post('/tasks', taskController.store);
 
-/* Rotas para a listagem de  usuarios e boards */
+/* Rotas para a atualizacao de tasks */
+/* Rotas para deletar boards e taks */
+
+/* Rotas para a listagem de usuarios e boards para teste */
 router.get('/listUsers', userController.listUsers);
 
 router.get('/listBoards', boardController.listBoards);

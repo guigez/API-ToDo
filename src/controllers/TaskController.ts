@@ -28,7 +28,7 @@ class TaskController {
     }
   }
 
-  /* Metodo responsavel por buscar um usuario com id */
+  /* Metodo responsavel por buscar uma task com id */
   async findUserById(id: string){
 
   }

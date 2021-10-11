@@ -44,6 +44,7 @@ class UserController {
     }
   }
 
+  /* Metodo responsavel por acrescentar ao user o id do board em que ele foi add */
   async updateUserBoards(userId: string, boardId: string){
     const user = await User.findByIdAndUpdate(userId, {$push: {boards: boardId}}, {new:true});
     return user;

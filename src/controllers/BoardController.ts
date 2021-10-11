@@ -25,6 +25,7 @@ class BoardController {
     }
   }
 
+  /* Metodo responsavel por acrescentar tasks ao um board */
   async updateBoardTasks(boardId: string, taskId: string){
     const board = await Board.findByIdAndUpdate(boardId, {$push:{tasks: taskId}}, {new: true});
     return board;
