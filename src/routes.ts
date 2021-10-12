@@ -22,29 +22,29 @@ router.get('/', (req: Request, res: Response) => {
 });
 
 /* Rotas para a listagem de usuarios e boards para teste */
-router.get('/listUsers', userController.listUsers);
+router.get('/listUsers', userController.listUsers); //ok
 
-router.get('/listBoards', boardController.listBoards);
+router.get('/listBoards', boardController.listBoards); //ok
 
 /* Rota para listar Tasks de um Board */
-router.get('/:boardId', boardController.listTasks);
+router.get('/:boardId', boardController.listTasks); //gui
 
 /* Rotas para a criacao de usuario, board e task */
-router.post('/user', userController.store);
+router.post('/user', userController.store); //ok
 
-router.post('/board', boardController.store);
+router.post('/board', boardController.store); //ok
 
-router.post('/task', taskController.store);
+router.post('/task', taskController.store); //ok
 
 /* Rotas para a atualizacao de task e board */
-router.put('/:taskId', taskController.update);
+router.put('/:taskId', taskController.update); //arthur
 
-router.put('/:boardId', boardController.update)
+router.put('/:boardId', boardController.update); //rafael
 
 /* Rotas para deletar task e board */
-router.delete('/:taskId', taskController.delete);
+router.delete('/:taskId', taskController.delete); //arthur
 
-router.delete('/:boardId', boardController.delete);
+router.delete('/:boardId', boardController.delete); //rafael
 
 
 
