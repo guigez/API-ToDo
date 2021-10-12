@@ -3,7 +3,14 @@ import { Board } from "../schemas/Board";
 import { UserController } from "../controllers/UserController"
 
 class BoardController {
-  /* Metodo responsavel por armazenar usuarios */
+  /* Metodo responsavel por armazenar Boards
+  *   JSON: {
+  *	    "title": "<titulo>",
+ 	*     "userId": "<id do usuario que criou o board"
+  *   }
+  *   
+  *  Return: board criado, usuario que criou o board e mensagem
+  */
   async store(request: Request, response: Response) {
 
     const { title, userId } = request.body;
@@ -31,6 +38,18 @@ class BoardController {
     return board;
   }
   
+  /* Metodo responsavel por deletar um board 
+  *   - Nao esquecer de deletar todas as tasks que estao nele
+  *   - Nao esquecer de deletar o id do board nos usuarios
+  * */
+  async delete(id: string){
+    
+  }
+
+  /* Metodo responsavel por att um board */
+  async update(id: string){
+    
+  }
 
   async listBoards(request: Request, response: Response) {
     try {
@@ -39,6 +58,11 @@ class BoardController {
     }catch (err) {
       response.status(400).json({ error: err.message, message: "Nothing Found"});
     }
+  }
+
+  /* Metodo para listar as tasks de um board */
+  async listTasks(id: string){
+
   }
   
 }

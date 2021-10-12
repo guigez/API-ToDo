@@ -2,7 +2,15 @@ import { Request, Response } from "express";
 import { User } from "../schemas/User";
 
 class UserController {
-  /* Metodo responsavel por armazenar usuarios */
+  /* Metodo responsavel por armazenar um usuario
+  *   JSON: {
+  *	    	 "name": "<Saito Kiba>",
+  *        "email": "<saitokiba@gmail.com>",
+  *        "password": "<123>"
+  *   }
+  *   
+  *  Return: usuario criado e mensagem
+  */
   async store(request: Request, response: Response) {
       //recuperando dados do corpo da requisicao
       const { name, email, password } = request.body
@@ -35,13 +43,14 @@ class UserController {
 
   }
 
-  async listUsers(resquest: Request, response: Response){
+  async listUsers(request: Request, response: Response){
     try {
       const users = await User.find().populate('boards');
       return response.send({ users });
     }catch (err) {
       response.status(400).json({ error: err.message, message: "Nothing Found"});
     }
+
   }
 
   /* Metodo responsavel por acrescentar ao user o id do board em que ele foi add */

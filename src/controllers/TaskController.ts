@@ -4,7 +4,15 @@ import { BoardController } from "./BoardController";
 
 
 class TaskController {
-  /* Metodo responsavel por armazenar usuarios */
+  /* Metodo responsavel por armazenar task em um board
+  *   JSON: {
+  *	    "title": "<titulo>",
+  *     "status": "<tasks><doing><completed>",
+ 	*     "boardId": "<id do board em que a task ira pertencer"
+  *   }
+  *   
+  *  Return: task criada, board e mensagem
+  */
   async store(request: Request, response: Response) {
 
     const { title, status, boardId } = request.body;
@@ -28,8 +36,18 @@ class TaskController {
     }
   }
 
+  /* Metodo para att uma task */
+  async update(id: string){
+
+  }
+
+  /* Metodo para deletar uma task */
+  async delete(id: string){
+
+  }
+
   /* Metodo responsavel por buscar uma task com id */
-  async findUserById(id: string){
+  async findTaskById(id: string){
 
   }
   
