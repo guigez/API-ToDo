@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { Board } from "../schemas/Board";
 import { UserController } from "../controllers/UserController"
+import { Task } from "../schemas/task";
 
 class BoardController {
   /* Metodo responsavel por armazenar Boards
@@ -47,23 +48,21 @@ class BoardController {
   }
 
   /* Metodo responsavel por att um board */
-  async update(id: string){
-    
+  async update(request: Request, response: Response){
+    return response.status(200).send({messagem: request.params.boardId});
   }
 
   async listBoards(request: Request, response: Response) {
     try {
-      const boards = await Board.find().populate('tasks')
-      return response.send({ boards });
+      const boards = await Board.find().populate('tasks');
+      return response.json( boards );
     }catch (err) {
       response.status(400).json({ error: err.message, message: "Nothing Found"});
     }
   }
 
   /* Metodo para listar as tasks de um board */
-  async listTasks(id: string){
-
-  }
+  async listTasks(id: string){  }
   
 }
 

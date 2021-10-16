@@ -39,9 +39,9 @@ router.post('/task', taskController.store); //ok
 /* Rotas para a atualizacao de task e board */
 router.put('/:taskId', taskController.update); //arthur
 
-router.put('/:boardId', boardController.update); //rafael
+router.put('/board/:boardId', boardController.update); //rafael
 
-/* Rotas para deletar task e board */
+/* Rotas para deletar task e board */ 
 router.delete('/:taskId', taskController.delete); //arthur
 
 router.delete('/:boardId', boardController.delete); //rafael
