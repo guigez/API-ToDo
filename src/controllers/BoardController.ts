@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { Board } from "../schemas/Board";
 import { UserController } from "../controllers/UserController"
 import { Task } from "../schemas/task";
+import { User } from "../schemas/User";
 
 class BoardController {
   /* Metodo responsavel por armazenar Boards
@@ -43,13 +44,28 @@ class BoardController {
   *   - Nao esquecer de deletar todas as tasks que estao nele
   *   - Nao esquecer de deletar o id do board nos usuarios
   * */
-  async delete(id: string){
-    
+  async delete(request: Request, response: Response) {
+    const tasks = await Task.find({ "boards": request.params.boardId });
+    console.log(tasks);
+
+    const userId = await User.find({ "boards": request.params.boardId },);
+    console.log(userId);
+
+    const board = await Board.findByIdAndDelete(request.params.boardId);
   }
 
   /* Metodo responsavel por att um board */
   async update(request: Request, response: Response){
-    return response.status(200).send({messagem: request.params.boardId});
+    try {
+      const { title } = request.body;
+      const board = await Board.findByIdAndUpdate(request.params.boardId, { title }, { new: true });
+
+
+      return response.status(201).json({ board, message: "Board Updated successfully" });
+
+    } catch (err) {
+      response.status(500).json({ error: err.message, message: "Board not updated" });
+    }
   }
 
   async listBoards(request: Request, response: Response) {
