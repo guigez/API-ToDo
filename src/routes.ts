@@ -37,7 +37,7 @@ router.post('/board', boardController.store); //ok
 router.post('/task', taskController.store); //ok
 
 /* Rotas para a atualizacao de task e board */
-router.put('/tasd/:taskId', taskController.update); //arthur
+router.put('/task/:taskId', taskController.update); //arthur
 
 router.put('/board/:boardId', boardController.update); //rafael
 
@@ -45,9 +45,5 @@ router.put('/board/:boardId', boardController.update); //rafael
 router.delete('/:taskId', taskController.delete); //arthur
 
 router.delete('/:boardId', boardController.delete); //rafael
-
-
-
-
 
 export { router }

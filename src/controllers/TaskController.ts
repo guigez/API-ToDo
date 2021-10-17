@@ -37,7 +37,17 @@ class TaskController {
   }
 
   /* Metodo para att uma task */
-  async update(id: string){
+  async update(request: Request, response: Response){
+    try {
+      const { status } = request.body;
+      console.log(request.params.taskId + ' atualizou');
+      const task = await Task.findByIdAndUpdate(request.params.taskId, {status}, {new: true});
+
+      return response.status(201).json({task, message: "Board Updated successfully" });
+
+    } catch (err) {
+      response.status(500).json({ error: err.message, message: "Task not store" });
+    }
 
   }
 
