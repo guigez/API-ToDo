@@ -5,7 +5,7 @@ This API is intended to serve the Application ToDo.
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
   <a href="#" target="_blank">
-    <img alt="Database: Mongo" src="hields.io/badge/-Mongo-green" />
+    <img alt="Database: Mongo" src="https://img.shields.io/badge/-Mongo-green"/>
   </a>
    <a href="#" target="_blank">
     <img alt="Node: Node" src="https://img.shields.io/badge/-Node-success" />
