@@ -33,3 +33,18 @@ Run it using:
 ```sh
 yarn start
 ```
+
+## Authors
+
+:snowflake: **Akms**
+- Github: [@akms0](https://github.com/akms0)
+
+:rice_ball:	 **Nyanham**
+- Github: [@nyanham](https://github.com/nyanham)
+
+:ramen: **Yuuta**
+- Github: [@YuutaDragon](https://github.com/YuutaDragon)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
