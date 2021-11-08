@@ -78,7 +78,16 @@ class BoardController {
   }
 
   /* Metodo para listar as tasks de um board */
-  async listTasks(id: string){  }
+  async listTasks(request: Request, response: Response){ 
+    try {
+      const  id = request.params.boardId;
+      console.log(id);
+      const tasks = await Board.findOne({_id: id}).populate('tasks');
+      return response.json( tasks );
+    }catch (err) {
+      response.status(400).json({ error: err.message, message: "Nothing Found"});
+    }
+  }
   
 }
 
