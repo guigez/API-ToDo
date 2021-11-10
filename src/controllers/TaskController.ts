@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { Board } from "../schemas/Board";
 import { Task } from "../schemas/task";
 import { BoardController } from "./BoardController";
 
@@ -37,10 +38,9 @@ class TaskController {
   }
 
   /* Metodo para att uma task */
-  async update(request: Request, response: Response){
+  async updateStatus(request: Request, response: Response){
     try {
       const { status } = request.body;
-      console.log(request.params.taskId + ' atualizou');
       const task = await Task.findByIdAndUpdate(request.params.taskId, {status}, {new: true});
 
       return response.status(201).json({task, message: "Board Updated successfully" });
@@ -48,11 +48,28 @@ class TaskController {
     } catch (err) {
       response.status(500).json({ error: err.message, message: "Task not store" });
     }
+  }
 
+  async update(request: Request, response: Response){
+    try {
+      const { title } = request.body;
+      const task = await Task.findByIdAndUpdate(request.params.taskId, {title}, {new: true});
+
+      return response.status(201).json({task, message: "Task Updated successfully" });
+
+    } catch (err) {
+      response.status(500).json({ error: err.message, message: "Task not store" });
+    }
   }
 
   /* Metodo para deletar uma task */
-  async delete(id: string){
+  async delete(request: Request, response: Response){
+    const { taskId } = request.params;
+    const { boardId } = request.body;
+    const board = await Board.findByIdAndUpdate(boardId, {$pull: {tasks:taskId}}, {new:true});
+    await Task.findByIdAndDelete(taskId);
+
+    return response.status(200).json({board, message: "Removed Task with Sucess" });
 
   }
 

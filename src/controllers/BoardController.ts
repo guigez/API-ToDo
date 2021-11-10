@@ -45,13 +45,14 @@ class BoardController {
   *   - Nao esquecer de deletar o id do board nos usuarios
   * */
   async delete(request: Request, response: Response) {
-    const tasks = await Task.find({ "boards": request.params.boardId });
-    console.log(tasks);
+    
+    await Task.deleteMany({board: request.params.boardId});
 
-    const userId = await User.find({ "boards": request.params.boardId },);
-    console.log(userId);
+    const users = await User.updateMany({boards: request.params.boardId}, {$pull: {boards: request.params.boardId}}, {new:true});
 
-    const board = await Board.findByIdAndDelete(request.params.boardId);
+    await Board.findByIdAndDelete(request.params.boardId);
+
+    return response.status(200).json({users, message: "Delete Sucess"});
   }
 
   /* Metodo responsavel por att um board */
@@ -81,7 +82,7 @@ class BoardController {
   async listTasks(request: Request, response: Response){ 
     try {
       const  id = request.params.boardId;
-      console.log(id);
+     
       const tasks = await Board.findOne({_id: id}).populate('tasks');
       return response.json( tasks );
     }catch (err) {

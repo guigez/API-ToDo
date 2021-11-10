@@ -27,7 +27,7 @@ router.get('/listUsers', userController.listUsers); //ok
 router.get('/listBoards', boardController.listBoards); //ok
 
 /* Rota para listar Tasks de um Board */
-router.get('/:boardId', boardController.listTasks); //gui
+router.get('/board/listTask/:boardId', boardController.listTasks); //gui
 
 /* Rotas para a criacao de usuario, board e task */
 router.post('/user', userController.store); //ok
@@ -37,13 +37,17 @@ router.post('/board', boardController.store); //ok
 router.post('/task', taskController.store); //ok
 
 /* Rotas para a atualizacao de task e board */
-router.put('/task/:taskId', taskController.update); //arthur
+router.put('/task/status/:taskId', taskController.updateStatus); //ok
+router.put('/task/update/:taskId', taskController.update); //ok
 
-router.put('/board/:boardId', boardController.update); //rafael
+router.put('/board/update/:boardId', boardController.update); //ok
+
+/*Rota para invite de usuario em um board */
+router.put('/invite', userController.invite); //ok
 
 /* Rotas para deletar task e board */ 
-router.delete('/:taskId', taskController.delete); //arthur
+router.delete('/task/delete/:taskId', taskController.delete); //ok
 
-router.delete('/:boardId', boardController.delete); //rafael
+router.delete('/board/delete/:boardId', boardController.delete); //ok
 
 export { router }

@@ -34,8 +34,8 @@ class UserController {
   }
 
   /* Metodo responsavel por buscar um usuario com email */
-  async findUserByEmail(email: string){
-
+  public async findUserByEmail(email: string){
+    return User.find({'email': email});
   }
 
   /* Metodo responsavel por buscar um usuario com id */
@@ -45,7 +45,7 @@ class UserController {
 
   async listUsers(request: Request, response: Response){
     try {
-      const users = await User.find().populate('boards');
+      const users = await User.find();
       return response.send({ users });
     }catch (err) {
       response.status(400).json({ error: err.message, message: "Nothing Found"});
@@ -59,6 +59,20 @@ class UserController {
     return user;
   }
   
+  async invite(request: Request, response: Response) {
+    try {
+      const { emailUser, boardId } = request.body;
+      
+      const user = await User.find({'email': emailUser.toString()});
+
+      const userM = await User.findByIdAndUpdate(user[0]._id, {$push: {boards: boardId}}, {new:true});
+
+      response.status(200).json({userM, message: "User Added"})
+
+    } catch (err) {
+      response.status(400).json({ error: err.message, message: "Nothing Found" });
+    }
+  }
 }
 
 export { UserController };
