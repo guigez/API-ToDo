@@ -84,6 +84,14 @@ class UserController {
       response.status(400).json({ error: err.message, message: "Nothing Found" });
     }
   }
+
+  async listBoardsByUser(request: Request, response: Response){
+    const { userId } = request.params;
+
+    const user = await User.findById(userId).populate('boards');
+
+    return response.json(user);
+  }
 }
 
 export { UserController };

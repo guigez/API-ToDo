@@ -27,6 +27,9 @@ router.get('/listUsers', userController.listUsers); //ok
 
 router.get('/listBoards', boardController.listBoards); //ok
 
+/*Rota para lista boards de um usuario */
+router.get('/user/listBoards/:userId', userController.listBoardsByUser)
+
 /* Rota para listar Tasks de um Board */
 router.get('/board/listTask/:boardId', boardController.listTasks); //gui
 
