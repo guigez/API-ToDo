@@ -2,12 +2,13 @@ import { Router, Request, Response  } from "express";
 import { BoardController } from "./controllers/BoardController";
 import { TaskController } from "./controllers/TaskController";
 import { UserController } from "./controllers/UserController";
+import { Authenticate } from "./services/Authenticate";
 
 const router = Router();
 const userController = new UserController();
 const boardController = new BoardController();
 const taskController = new TaskController();
-
+const authenticate = new Authenticate();
 /*
 *   GET     => Buscar uma informacao
 *   POST    => Inserir (criar) uma informacao
@@ -50,4 +51,6 @@ router.delete('/task/delete/:taskId', taskController.delete); //ok
 
 router.delete('/board/delete/:boardId', boardController.delete); //ok
 
+/*Rotas para o Login */
+router.post('/login', authenticate.login);
 export { router }

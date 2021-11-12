@@ -1,6 +1,14 @@
 import { Request, Response } from "express";
 import { User } from "../schemas/User";
 
+interface IUser{
+  _id?: string;
+  name: string;
+  email: string;
+  password?: string;
+  boards?: string[]; 
+}
+
 class UserController {
   /* Metodo responsavel por armazenar um usuario
   *   JSON: {
@@ -35,7 +43,10 @@ class UserController {
 
   /* Metodo responsavel por buscar um usuario com email */
   public async findUserByEmail(email: string){
-    return User.find({'email': email});
+
+    const user = await User.findOne({email}).select('+password');
+
+    return user;
   }
 
   /* Metodo responsavel por buscar um usuario com id */
