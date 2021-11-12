@@ -30,6 +30,7 @@ class UserController {
         password
       })
 
+      console.log(user);
 
     try {
       //salvando usuario no banco do dados
