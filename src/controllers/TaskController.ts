@@ -64,8 +64,11 @@ class TaskController {
 
   /* Metodo para deletar uma task */
   async delete(request: Request, response: Response){
-    const { taskId } = request.params;
-    const { boardId } = request.body;
+    const { taskId, boardId } = request.params;
+
+    console.log('taks: ' + taskId)
+    console.log('board: ' + boardId)
+    //const { boardId } = request.params;
     const board = await Board.findByIdAndUpdate(boardId, {$pull: {tasks:taskId}}, {new:true});
     await Task.findByIdAndDelete(taskId);
 

@@ -20,7 +20,7 @@ class Authenticate {
       throw new Error("Email or Password Incorrect");
     } */
 
-    const token = sign({id: user._id, name: user.name}, "ef04dd06fdb4892f176f8794ca286302", {expiresIn: "1d"});
+    const token = sign({id: user._id, email: user.email, name: user.name}, "ef04dd06fdb4892f176f8794ca286302", {expiresIn: "1d"});
 
     return response.json(token);
   }
