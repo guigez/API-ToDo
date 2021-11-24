@@ -43,7 +43,7 @@ router.post('/task',ensureAuthenticate, taskController.store); //ok
 
 /* Rotas para a atualizacao de task e board */
 router.put('/task/status/:taskId',ensureAuthenticate, taskController.updateStatus); //ok
-router.put('/task/update/:taskId',ensureAuthenticate, taskController.update); //ok
+router.put('/task/update/:taskId', taskController.update); //ok
 
 router.put('/board/update/:boardId',ensureAuthenticate, boardController.update); //ok
 
