@@ -74,6 +74,8 @@ class UserController {
   async invite(request: Request, response: Response) {
     try {
       const { emailUser, boardId } = request.body;
+
+      console.log('email: ' + emailUser + ' boardId: ' + boardId );
       
       const user = await User.find({'email': emailUser.toString()});
 
