@@ -76,7 +76,13 @@ class UserController {
       const { emailUser, boardId } = request.body;
 
       console.log('email: ' + emailUser + ' boardId: ' + boardId );
-      
+
+      const teste = await User.findOne({email: emailUser.toString(), boards: { $in: [boardId]}})
+
+      if(teste){
+        throw new Error("User already added")
+      }
+
       const user = await User.find({'email': emailUser.toString()});
 
       const userM = await User.findByIdAndUpdate(user[0]._id, {$push: {boards: boardId}}, {new:true});
@@ -84,7 +90,7 @@ class UserController {
       response.status(200).json({userM, message: "User Added"})
 
     } catch (err) {
-      response.status(400).json({ error: err.message, message: "Nothing Found" });
+      response.json({ error: err.message, message: "Nothing Found" });
     }
   }
 
