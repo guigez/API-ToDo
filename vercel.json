@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
       {
-          "src": "src/server.ts",
+          "src": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
           "use": "@vercel/node"
       }
   ],
