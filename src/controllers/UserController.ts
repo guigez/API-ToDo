@@ -83,9 +83,9 @@ class UserController {
         throw new Error("User already added")
       }
 
-      const user = await User.find({'email': emailUser.toString()});
+      const user = await User.findOne({'email': emailUser.toString()});
 
-      const userM = await User.findByIdAndUpdate(user[0]._id, {$push: {boards: boardId}}, {new:true});
+      const userM = await User.findByIdAndUpdate(user._id, {$push: {boards: boardId}}, {new:true});
 
       response.status(200).json({userM, message: "User Added"})
 
